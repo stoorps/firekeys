@@ -1,6 +1,6 @@
+use crate::firekeys::{Button, EventType, SimulateError};
 use crate::linux::common::{FALSE, TRUE};
 use crate::linux::keycodes::code_from_key;
-use crate::rdev::{Button, EventType, SimulateError};
 use std::convert::TryInto;
 use std::os::raw::c_int;
 use std::ptr::null;
@@ -70,11 +70,7 @@ unsafe fn send_native(event_type: &EventType, display: *mut xlib::Display) -> Op
             result
         }
     };
-    if res == 0 {
-        None
-    } else {
-        Some(())
-    }
+    if res == 0 { None } else { Some(()) }
 }
 
 pub fn simulate(event_type: &EventType) -> Result<(), SimulateError> {

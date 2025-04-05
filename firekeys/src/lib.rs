@@ -217,8 +217,8 @@
 //!
 //! Event data returned by the `listen` and `grab` functions can be serialized and de-serialized with
 //! Serde if you install this library with the `serialize` feature.
-mod rdev;
-pub use crate::rdev::{
+mod firekeys;
+pub use crate::firekeys::{
     Button, DisplayError, Event, EventType, GrabCallback, GrabError, Key, KeyboardState,
     ListenError, SimulateError,
 };

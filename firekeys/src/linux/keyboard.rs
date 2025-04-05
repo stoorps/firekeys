@@ -1,9 +1,9 @@
 extern crate x11;
+use crate::firekeys::{EventType, Key, KeyboardState};
 use crate::linux::keycodes::code_from_key;
-use crate::rdev::{EventType, Key, KeyboardState};
 use std::ffi::CString;
 use std::os::raw::{c_char, c_int, c_uint, c_ulong, c_void};
-use std::ptr::{null, null_mut, NonNull};
+use std::ptr::{NonNull, null, null_mut};
 use x11::xlib;
 
 #[derive(Debug)]
