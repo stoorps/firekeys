@@ -56,7 +56,7 @@ pub const kCGEventMaskForAllEvents: u64 = (1 << CGEventType::LeftMouseDown as u6
 
 #[cfg(target_os = "macos")]
 #[link(name = "Cocoa", kind = "framework")]
-extern "C" {
+unsafe extern "C" {
     #[allow(improper_ctypes)]
     pub fn CGEventTapCreate(
         tap: CGEventTapLocation,

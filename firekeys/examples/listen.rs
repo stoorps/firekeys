@@ -1,4 +1,4 @@
-use rdev::{listen, Event};
+use firekeys::{listen, Event};
 
 fn main() {
     // This will block.

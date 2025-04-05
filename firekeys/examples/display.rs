@@ -1,4 +1,4 @@
-use rdev::display_size;
+use firekeys::display_size;
 fn main() {
     let (w, h) = display_size().unwrap();
 

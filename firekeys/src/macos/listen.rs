@@ -9,7 +9,7 @@ use std::os::raw::c_void;
 static mut GLOBAL_CALLBACK: Option<Box<dyn FnMut(Event)>> = None;
 
 #[link(name = "Cocoa", kind = "framework")]
-extern "C" {}
+unsafe extern "C" {}
 
 unsafe extern "C" fn raw_callback(
     _proxy: CGEventTapProxy,
@@ -22,6 +22,7 @@ unsafe extern "C" fn raw_callback(
     let opt = KEYBOARD_STATE.lock();
     if let Ok(mut keyboard) = opt {
         if let Some(event) = convert(_type, &cg_event, &mut keyboard) {
+            #[allow(static_mut_refs)]
             if let Some(callback) = &mut GLOBAL_CALLBACK {
                 callback(event);
             }

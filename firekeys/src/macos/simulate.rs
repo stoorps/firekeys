@@ -83,7 +83,7 @@ unsafe fn get_current_mouse_location() -> Option<CGPoint> {
 }
 
 #[link(name = "Cocoa", kind = "framework")]
-extern "C" {}
+unsafe extern "C" {}
 
 pub fn simulate(event_type: &EventType) -> Result<(), SimulateError> {
     unsafe {

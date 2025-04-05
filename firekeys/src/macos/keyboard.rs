@@ -34,7 +34,7 @@ const BUF_LEN: usize = 4;
 #[cfg(target_os = "macos")]
 #[link(name = "Cocoa", kind = "framework")]
 #[link(name = "Carbon", kind = "framework")]
-extern "C" {
+unsafe extern "C" {
     fn TISCopyCurrentKeyboardLayoutInputSource() -> TISInputSourceRef;
     fn TISCopyCurrentKeyboardInputSource() -> TISInputSourceRef;
     fn TISGetInputSourceProperty(source: TISInputSourceRef, property: *mut c_void) -> CFDataRef;
@@ -70,11 +70,7 @@ impl Keyboard {
     }
 
     fn modifier_state(&self) -> ModifierState {
-        if self.caps_lock || self.shift {
-            2
-        } else {
-            0
-        }
+        if self.caps_lock || self.shift { 2 } else { 0 }
     }
 
     pub(crate) unsafe fn create_string_for_key(
